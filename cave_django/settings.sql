@@ -1,0 +1,4 @@
+-- settings.sql
+CREATE DATABASE cave;
+CREATE USER caveuser WITH PASSWORD 'cave';
+GRANT ALL PRIVILEGES ON DATABASE cave TO caveuser;
