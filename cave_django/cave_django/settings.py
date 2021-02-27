@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "cave",
+    "rest_framework",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cave_django.wsgi.application'
 
+ALLOWED_HOSTS=["*"]
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -77,11 +83,19 @@ WSGI_APPLICATION = 'cave_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tunr',
-        'USER': 'tunruser',
-        'PASSWORD': 'tunr',
+        'NAME': 'cave',
+        'USER': 'caveuser',
+        'PASSWORD': 'cave',
         'HOST': 'localhost'
     }
+}
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
 
 
